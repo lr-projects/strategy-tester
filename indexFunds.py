@@ -53,16 +53,13 @@ def capitalAppreciationModel(data, numMonths, monthlyAmount, yearlyYield):
   print expectedValue(roic)
   
   
+if __name__=='__main__':
+  path = "C:\Users\Luke\Documents\Finance\FTSE_monthly.csv"
+  workingData = readData(path)
 
-path = "C:\Users\Luke\Documents\Finance\FTSE_monthly.csv"
-workingData = readData(path)
-
-monthlyInvestment = 1000.0
-years = 30
-yearsInMonths = years * 12
-yearlyYield=0.02
-
-capitalAppreciationModel(workingData, yearsInMonths, monthlyInvestment, yearlyYield)
-
-# We should ignore any yield initially
-# We could extend this to consider their drawdown after this initial 20 year period is over
+  monthlyInvestment = 1000.0
+  years = 30
+  yearsInMonths = years * 12
+  yearlyYield=0.02
+  
+  capitalAppreciationModel(workingData, yearsInMonths, monthlyInvestment, yearlyYield)
