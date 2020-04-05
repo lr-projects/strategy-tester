@@ -6,19 +6,7 @@ import csv
 from datetime import datetime
 import matplotlib.pyplot as plt
 import numpy as np
-
-def readData(filepath):
-  raw = list(csv.reader(open(filepath), delimiter=','))[1:]
-  data = sorted(list(map(lambda x: (datetime.strptime(x[0], '%b %y'), x[2]), raw)), key = lambda x: x[0])
-  return data
-  
-def expectedValue(input):
-  hi = np.histogram(input, bins = xrange(int(input.min()), int(input.max()+1), 1), density = True)
-  
-  expectedValue = 0
-  for i in xrange(0, len(hi)):
-    expectedValue += hi[0][i]*hi[1][i]
-  return expectedValue
+from utils import *
 
 def tBillMonthlyModel(data, numMonths, monthlyAmount):
   result = {}
@@ -45,7 +33,7 @@ def tBillMonthlyModel(data, numMonths, monthlyAmount):
   
   # Plot the ROIC 
   roic = ((np.asarray(y) / float(numMonths * monthlyAmount)) - 1)*100
-  plt.hist(roic, bins=xrange(-100,100,2))
+  plt.hist(roic, bins=xrange(0,30,2))
   plt.show()
   
   print expectedValue(roic)
@@ -53,7 +41,7 @@ def tBillMonthlyModel(data, numMonths, monthlyAmount):
   
 if __name__=='__main__':
   path = 'C:\\Users\\Luke\\Documents\\Finance\\1YearBond_monthly.csv'
-  workingData = readData(path)
+  workingData = readData(path, 0, 1, '%b %y')
 
   monthlyInvestment = 1000.0
   years = 10
