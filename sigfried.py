@@ -63,7 +63,7 @@ def dataToROIC(incomeStatement, balanceStatement):
   ebit = convertValueToFloat(latestIncomeStatement["EBIT"])
   equities = convertValueToFloat(latestBalanceStatement["Total shareholders equity"])
   debt = convertValueToFloat(latestBalanceStatement["Long-term debt"])
-  cash = convertValueToFloat(latestBalanceStatement["Cash and short-term investments"])
+  cash = convertValueToFloat(latestBalanceStatement["Cash and cash equivalents"])
   
   if ebit == None or equities == None or debt == None or cash == None:
     return None
